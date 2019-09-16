@@ -45,10 +45,12 @@ public class FileInputConverter implements JsonConverter {
         List<InitialPreviewConfig> newList = new ArrayList<InitialPreviewConfig>();
         for (int i = 0; i < fileOutBuilder.getConfigList().size(); i++) {
             InitialPreviewConfig initialPreviewConfig = fileOutBuilder.getConfigList().get(i);
+            SysResourcesFilesEntity sysResourcesFilesEntity = list.get(i);
             InitialPreview urlEntity = fileOutBuilder.getIpList().get(i);
             if (urlEntity != null && StringUtils.isNotBlank(urlEntity.getData())) {
                 initialPreviewConfig.setFileHttpUrl(urlEntity.getData());
             }
+            initialPreviewConfig.setFileUniqueCode(sysResourcesFilesEntity.getFileUniqueCode());
             newList.add(initialPreviewConfig);
         }
         FileOutInfo fileOutInfo = new FileOutInfo();

@@ -119,6 +119,8 @@ public class InitialPreviewConfig {
     @Expose
     private String fileHttpUrl;//文件回显路径     放在另一个数据里不好取。放在这个里面一个冗余的属性
 
+    @Expose
+    private String fileUniqueCode;
     /**
      * 在键中配置的文件模板类型之一previewSettings。
      * 这将覆盖initialPreviewFileType设置。这对于标识用于显示特定文件内容的模板很有用。
