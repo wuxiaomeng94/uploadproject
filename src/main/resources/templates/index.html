@@ -98,7 +98,8 @@
         var fileUniqueCode = '${fileUniqueCode}';
         var tableName = '${tableName}';
         var fileInputData = function (busiId,fileUniqueCode,callback) {
-            console.log('${localAddress}');
+
+            //console.log('${localAddress}');
             $.ajax({
                 url: '${localAddress}/enclosure/fileInput/init',
                 data: {'busiId':busiId, 'fileUniqueCode':fileUniqueCode },
@@ -111,9 +112,16 @@
             });
         }
         fileInputData(busiId,fileUniqueCode,function(data){
-            console.log(data);
+            //console.log(data);
             var initialPreview = data.initialPreview;
             var initialPreviewConfig = data.initialPreviewConfig;
+            const readOnly = '${fileReadOnly}';
+            if (readOnly != 'false') {
+                $("#${filesId}").attr("readonly", "readonly");
+            } else {
+                $("#${filesId}").removeAttr("readonly");
+            }
+
             $("#${filesId}").fileinput({
                 language: "zh",
                 theme: "fa",
@@ -149,7 +157,7 @@
                 //alert("上传完变更");
                 msg();
             });
-
+            $(".kv-file-zoom").attr("disabled", false);
             msg();
             auto.enable();
 
@@ -203,6 +211,7 @@
             return true;
         } else {
             //文件是只读的，那么是否有区域点击事件应是false
+            //$("#${filesId}").attr("readOnly", "readOnly");
             return false;
         }
     }
